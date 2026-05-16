@@ -15,6 +15,18 @@
 &soft_off { /delete-property/ split-peripheral-off-on-press; };
 
 / {
+    macros {
+        emdash: emdash {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&kp LS(LC(U)) &kp N2 &kp N0 &kp N1 &kp N4 &kp ENTER>,
+                <&macro_tap>;
+
+            label = "EMDASH";
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -26,9 +38,9 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-&kp TAB           &kp Q  &kp W  &kp F     &kp P  &kp G        &kp J    &kp L  &kp U      &kp Y    &kp ASTRK  &kp SQT
-&kp LEFT_SHIFT    &kp A  &kp R  &kp S     &kp T  &kp D        &kp H    &kp N  &kp E      &kp I    &kp O      &kp BACKSPACE
-&kp LEFT_CONTROL  &kp Z  &kp X  &kp C     &kp V  &kp B        &kp K    &kp M  &kp COMMA  &kp DOT  &kp DQT    &kp ESC
+&kp ESCAPE        &kp Q  &kp W  &kp F     &kp P  &kp G        &kp J    &kp L  &kp U      &kp Y    &kp ASTRK  &kp SQT
+&kp LEFT_SHIFT    &kp A  &kp R  &kp S     &kp T  &kp D        &kp H    &kp N  &kp E      &kp I    &kp O      &kp DOUBLE_QUOTES
+&kp LEFT_CONTROL  &kp Z  &kp X  &kp C     &kp V  &kp B        &kp K    &kp M  &kp COMMA  &kp DOT  &kp QMARK  &kp TAB
                                 &kp LGUI  &mo 1  &kp SPACE    &kp RET  &mo 2  &kp RALT
             >;
         };
@@ -41,9 +53,9 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&bt BT_CLR      &kp N1          &kp N2         &kp N3    &kp N4  &kp N5       &kp QUESTION  &kp LESS_THAN  &kp GREATER_THAN  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp BSPC
-&bt BT_CLR_ALL  &kp N6          &kp N7         &kp N8    &kp N9  &kp N0       &kp LEFT      &kp DOWN       &kp UP            &kp RIGHT             &trans                 &trans
-&kp LSHFT       &studio_unlock  &kp LG(LS(S))  &trans    &trans  &trans       &bt BT_SEL 0  &bt BT_SEL 1   &bt BT_SEL 2      &bt BT_SEL 3          &bt BT_SEL 4           &trans
+&bt BT_CLR      &kp N1          &kp N2         &kp N3    &kp N4  &kp N5       &kp QUESTION  &kp LESS_THAN  &kp GREATER_THAN  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp DELETE
+&bt BT_CLR_ALL  &kp N6          &kp N7         &kp N8    &kp N9  &kp N0       &kp LEFT      &kp DOWN       &kp UP            &kp RIGHT             &trans                 &kp BACKSPACE
+&kp LSHFT       &studio_unlock  &kp LG(LS(S))  &trans    &trans  &emdash      &bt BT_SEL 0  &bt BT_SEL 1   &bt BT_SEL 2      &bt BT_SEL 3          &bt BT_SEL 4           &trans
                                                &kp LGUI  &trans  &kp SPACE    &kp RET       &trans         &kp RALT
             >;
         };
@@ -65,10 +77,10 @@
 
         layer3 {
             bindings = <
-&kp LG(N1)  &kp LG(NUMBER_2)  &kp LG(N3)  &kp LG(NUMBER_4)  &kp LG(N5)  &kp LG(N6)    &kp LG(N7)  &kp LG(N8)  &kp LG(N9)  &kp LG(N0)  &trans   &trans
-&kp F1      &kp F2            &kp F3      &kp F4            &kp F5      &kp F6        &kp F7      &kp F8      &kp F9      &kp F10     &kp F11  &kp F12
-&trans      &trans            &trans      &trans            &trans      &trans        &trans      &trans      &trans      &trans      &trans   &trans
-                                          &trans            &trans      &trans        &trans      &trans      &trans
+&kp LG(N1)  &kp LG(NUMBER_2)  &kp LG(N3)  &kp LG(NUMBER_4)  &kp LG(N5)  &kp LG(N6)          &kp LG(N7)  &kp LG(N8)  &kp LG(N9)  &kp LG(N0)  &trans   &trans
+&kp F1      &kp F2            &kp F3      &kp F4            &kp F5      &kp F6              &kp F7      &kp F8      &kp F9      &kp F10     &kp F11  &kp F12
+&trans      &trans            &trans      &trans            &trans      &kp K_PLAY_PAUSE    &trans      &trans      &trans      &trans      &trans   &trans
+                                          &trans            &trans      &trans              &trans      &trans      &trans
             >;
         };
     };
